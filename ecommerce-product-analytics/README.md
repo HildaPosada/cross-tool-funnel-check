@@ -40,6 +40,9 @@ The GA4 sample is obfuscated and covers only three months. Treat findings as a m
 - Following-week activity retention ranges from 2.47% to 6.73% across observable cohorts. Retention is based on any recorded event, not purchases.
 - Reconciliation discrepancies and root causes: pending.
 - Tableau Public dashboard: [Ecommerce Product Analytics — Funnel & Retention](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention)
+- Dashboard screenshot:
+
+	![Tableau dashboard screenshot](dashboard/dashboard-screenshot.png)
 - Optional case study URL: pending.
 
 ## Suggested milestones
