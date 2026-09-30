@@ -1,0 +1,5 @@
+step_number,event_name,users,conversion_from_view,conversion_from_previous,users_lost_from_previous
+1,view_item,61252,1,,
+2,add_to_cart,12052,0.19676092209233983,0.19676092209233983,49200
+3,begin_checkout,4909,0.08014432181806308,0.40731828742117493,7143
+4,purchase,2833,0.04625155096976425,0.57710327969036468,2076

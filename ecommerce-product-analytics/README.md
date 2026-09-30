@@ -2,7 +2,7 @@
 
 Portfolio project: event quality, ordered conversion funnels, weekly retention, and cross-tool reconciliation.
 
-**Status:** starter implementation. No live queries have been executed; findings and dashboard links are pending. Do not present planned work as completed experience.
+**Status:** Tableau dashboard published from the GA4 sample. Cross-tool validation is still pending; treat these results as a methods demonstration, not a commercial recommendation.
 
 ## Business questions
 1. Where do users stop progressing from product view to purchase?
@@ -35,11 +35,11 @@ Sandbox: https://docs.cloud.google.com/bigquery/docs/sandbox
 The GA4 sample is obfuscated and covers only three months. Treat findings as a methods demonstration, not a commercial recommendation. Timestamp order can differ from reporting-date boundaries. Missing identities, timestamp ties, repeat events, and finite observation affect interpretation. Existing sandbox tables expire; retain SQL and aggregate exports. Inspect actual query estimates rather than assuming a dataset size.
 
 ## Findings (complete after execution)
-- Funnel counts and conversion: pending.
-- Largest drop-off and proposed investigation: pending.
-- Retention pattern and limitations: pending.
+- Ordered funnel: 61,252 product views, 12,052 add-to-cart users, 4,909 checkout users, and 2,833 purchasers; view-to-purchase conversion is 4.63%.
+- Largest observed funnel drop-off is between product view and add to cart (80.32%); this identifies a stage to investigate, not its cause.
+- Following-week activity retention ranges from 2.47% to 6.73% across observable cohorts. Retention is based on any recorded event, not purchases.
 - Reconciliation discrepancies and root causes: pending.
-- Tableau Public link: pending.
+- Tableau Public dashboard: [Ecommerce Product Analytics — Funnel & Retention](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention)
 - Optional case study URL: pending.
 
 ## Suggested milestones
