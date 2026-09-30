@@ -13,7 +13,6 @@ WITH source_events AS (
       event_name,
       event_timestamp,
       event_bundle_sequence_id,
-      batch_event_index,
       event_server_timestamp_offset
     )))) AS source_event_id
   FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
