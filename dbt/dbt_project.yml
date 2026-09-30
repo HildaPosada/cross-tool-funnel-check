@@ -1,0 +1,21 @@
+name: ecommerce_analytics
+version: '1.0.0'
+config-version: 2
+profile: ecommerce_analytics
+model-paths: [models]
+seed-paths: [seeds]
+test-paths: [tests]
+macro-paths: [macros]
+models:
+  ecommerce_analytics:
+    +materialized: table
+seeds:
+  ecommerce_analytics:
+    validation_events:
+      +column_types:
+        distinct_id: varchar
+        event: varchar
+        event_time_utc: varchar
+        event_timestamp_us: bigint
+        source_event_id: varchar
+        funnel_start_utc: varchar

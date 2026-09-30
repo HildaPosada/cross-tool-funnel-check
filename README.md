@@ -57,3 +57,7 @@ Amplitude's current free plan blocks 2020 charts. For this validation experiment
 - [Comparison CSV](evidence/funnel_comparison.csv)
 - [Saved Amplitude chart](https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi) (access may require the project account)
 - dbt model and tests: not yet implemented. Course completion, resume updates, and applications are not claimed.
+
+## dbt exercise
+
+A [local DuckDB dbt project](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. dbt BigQuery deployment and Fundamentals course completion remain pending.

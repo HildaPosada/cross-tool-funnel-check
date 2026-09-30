@@ -4,3 +4,9 @@
 !.env.example
 data/raw/
 __pycache__/
+dbt/target/
+dbt/logs/
+dbt/*.duckdb*
+dbt/seeds/validation_events.csv
+
+dbt/.user.yml

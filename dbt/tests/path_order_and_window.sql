@@ -1,0 +1,1 @@
+select * from {{ ref('int_funnel_paths') }} where cart_ms <= view_ms or checkout_ms <= cart_ms or purchase_ms <= checkout_ms or cart_ms >= view_ms+604800000 or checkout_ms >= view_ms+604800000 or purchase_ms >= view_ms+604800000

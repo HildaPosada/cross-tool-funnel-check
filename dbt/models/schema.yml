@@ -1,0 +1,24 @@
+version: 2
+models:
+  - name: stg_events
+    description: Millisecond event grain used for the bounded validation sample.
+    columns:
+      - name: user_id
+        tests: [not_null]
+      - name: source_event_id
+        tests: [not_null, unique]
+      - name: event_time_ms
+        tests: [not_null]
+      - name: event_name
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [view_item, add_to_cart, begin_checkout, purchase]
+  - name: fct_funnel
+    description: Unique users completing strictly ordered steps within seven elapsed days.
+    columns:
+      - name: step_order
+        tests: [not_null, unique]
+      - name: users
+        tests: [not_null]

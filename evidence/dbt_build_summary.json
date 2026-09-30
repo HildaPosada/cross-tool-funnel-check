@@ -1,0 +1,100 @@
+{
+  "adapter": "duckdb",
+  "dbt_version": "1.12.5",
+  "funnel": [
+    [
+      1,
+      "view_item",
+      200
+    ],
+    [
+      2,
+      "add_to_cart",
+      13
+    ],
+    [
+      3,
+      "begin_checkout",
+      7
+    ],
+    [
+      4,
+      "purchase",
+      1
+    ]
+  ],
+  "build_results": [
+    {
+      "node": "seed.ecommerce_analytics.validation_events",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.adversarial_funnel_cases",
+      "status": "success"
+    },
+    {
+      "node": "model.ecommerce_analytics.stg_events",
+      "status": "success"
+    },
+    {
+      "node": "model.ecommerce_analytics.int_funnel_paths",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.accepted_values_stg_events_event_name__view_item__add_to_cart__begin_checkout__purchase.3fd3eaa33d",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_event_name.682bd9eda3",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_event_time_ms.329ef86f1c",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_source_event_id.796376067b",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_user_id.63ec98fbc4",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.sample_coverage",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.unique_stg_events_source_event_id.afde4066d2",
+      "status": "success"
+    },
+    {
+      "node": "model.ecommerce_analytics.fct_funnel",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.path_order_and_window",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.funnel_matches_independent_baseline",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.funnel_monotonic",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_fct_funnel_step_order.8ebcb7910f",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_fct_funnel_users.54b473a1f9",
+      "status": "success"
+    },
+    {
+      "node": "test.ecommerce_analytics.unique_fct_funnel_step_order.fb99f792ae",
+      "status": "success"
+    }
+  ]
+}
