@@ -34,7 +34,7 @@ WITH source_events AS (
   LIMIT 200
 )
 SELECT
-  u.user_pseudo_id AS distinct_id,
+  CONCAT('ga4_', TO_HEX(SHA256(u.user_pseudo_id))) AS distinct_id,
   e.event_name AS event,
   FORMAT_TIMESTAMP('%Y-%m-%dT%H:%M:%E6SZ', e.event_time_utc, 'UTC') AS event_time_utc,
   e.event_timestamp AS event_timestamp_us,
