@@ -1,6 +1,8 @@
 {
   "adapter": "duckdb",
   "dbt_version": "1.12.5",
+  "executed_at": "2026-09-30T23:37:06.659066Z",
+  "source_sha256": "72692231bcb07d24916f7fe175da3ec9882316ea99ac2ef5797a47a191d295cf",
   "funnel": [
     [
       1,
@@ -69,11 +71,11 @@
       "status": "success"
     },
     {
-      "node": "model.ecommerce_analytics.fct_funnel",
+      "node": "test.ecommerce_analytics.path_order_and_window",
       "status": "success"
     },
     {
-      "node": "test.ecommerce_analytics.path_order_and_window",
+      "node": "model.ecommerce_analytics.fct_funnel",
       "status": "success"
     },
     {
@@ -96,5 +98,16 @@
       "node": "test.ecommerce_analytics.unique_fct_funnel_step_order.fb99f792ae",
       "status": "success"
     }
-  ]
+  ],
+  "boundary_exercise": {
+    "purchase_ms": 604799999,
+    "stale_expected_step": 3,
+    "failure_rows": 1,
+    "correct_expected_step": 4,
+    "final_status": "pass",
+    "exact_boundary_ms": 604800000,
+    "exact_boundary_expected_step": 3
+  },
+  "bigquery_dbt_execution": "not run; local ADC unavailable",
+  "fundamentals_completion": "not verified; user completion required"
 }

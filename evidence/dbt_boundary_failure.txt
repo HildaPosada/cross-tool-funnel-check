@@ -1,0 +1,19 @@
+23:36:40  Running with dbt=1.12.5
+23:36:40  Registered adapter: duckdb=1.11.0
+23:36:40  Found 3 models, 14 data tests, 1 seed, 501 macros
+23:36:40  
+23:36:40  Concurrency: 2 threads (target='local')
+23:36:40  
+23:36:40  1 of 1 START test adversarial_funnel_cases ..................................... [RUN]
+23:36:40  1 of 1 FAIL 1 adversarial_funnel_cases ......................................... [FAIL 1 in 0.02s]
+23:36:40  
+23:36:40  Finished running 1 test in 0 hours 0 minutes and 0.07 seconds (0.07s).
+23:36:40  
+23:36:40  Completed with 1 error, 0 partial successes, and 0 warnings:
+23:36:40  
+23:36:40  [ERROR]: in test adversarial_funnel_cases (tests/adversarial_funnel_cases.sql)
+23:36:40    Got 1 result, configured to fail if != 0
+23:36:40  
+23:36:40    compiled code at target/compiled/ecommerce_analytics/tests/adversarial_funnel_cases.sql
+23:36:40  
+23:36:40  Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 REUSED=0 TOTAL=1

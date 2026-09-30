@@ -1,6 +1,6 @@
 # dbt funnel exercise
 
-Execution adapter: DuckDB locally. This is practical dbt evidence; dbt BigQuery deployment and dbt Fundamentals course completion are still pending.
+Execution adapter: DuckDB locally. Executed successfully September 30, 2026: three models and 14 passing tests. BigQuery dbt deployment has not been run; dbt Fundamentals course completion remains unverified.
 
 ## Reproduce
 
@@ -22,4 +22,4 @@ The independent BigQuery/Amplitude baseline is 200 → 13 → 7 → 1. Tests che
 
 ## Learn by changing it
 
-Complete dbt Fundamentals yourself. Explain `ref`, table materializations, the dependency graph, and why failing data tests return rows. Then change the synthetic boundary purchase to 604799999, change its expected step to four, and rerun that test. List course completion only after completing it.
+Complete dbt Fundamentals yourself. Explain `ref`, table materializations, the dependency graph, and why failing data tests return rows. The boundary exercise has been executed: changing the purchase to 604799999 with expected step three failed with one row, then changing the expectation to four passed. The fixture lives in `tests/adversarial_funnel_cases.sql`; its separate exact-boundary case still expects three. Repeat this exercise yourself to practice interpreting failures. List course completion only after completing it.

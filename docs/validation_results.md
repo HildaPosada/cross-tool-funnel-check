@@ -53,7 +53,15 @@ This validates only the bounded sample and shared seven-day rules. Tableau uses 
 
 The extract excludes events after seven days from first view, so later repeat entries can have shorter observable follow-up. This limits interpretation but is shared in both tools. Exact agreement does not prove missing source events, identity correctness, or causal explanations. Amplitude row acceptance and funnel matching are demonstrated; a full raw-event re-export reconciliation has not been performed.
 
-Next: implement a small dbt staging model with not-null, uniqueness, accepted-event, and timestamp/sequence tests; then write a case study distinguishing the full-population Tableau findings from this validation experiment.
+## dbt execution and boundary exercise
+
+The project was executed locally with dbt Core 1.12.5 and dbt-duckdb 1.11.0 against the original hashed 1,353-row extract. `dbt build` successfully created three table models and ran 14 passing data tests (18 successful nodes including the seed). The funnel again returned 200 → 13 → 7 → 1. `dbt docs generate` completed, and the generated documentation was served locally.
+
+The synthetic fixture is `dbt/tests/adversarial_funnel_cases.sql`. Moving its boundary purchase from 604800000 to 604799999 while keeping expected step 3 produced exactly one failing row: actual step 4 versus expected step 3. Correcting the expected step to 4 restored a passing build. The final fixture retains a separate exact-deadline case expecting step 3, so both sides of the exclusive seven-day cutoff are covered.
+
+Evidence: [build output](../evidence/dbt_build_output.txt), [intentional failure](../evidence/dbt_boundary_failure.txt), [machine-readable results](../evidence/dbt_build_summary.json), and [build screenshot](../evidence/dbt-build.jpg). No raw user records or credentials are published.
+
+This demonstrates actual local dbt execution. It does not demonstrate dbt deployed on BigQuery: local application-default credentials were unavailable. dbt Fundamentals completion remains unverified and must be completed by the learner. Next: complete the course and write the portfolio case study, separating the full-population Tableau findings from the bounded validation sample.
 
 ## Official references
 

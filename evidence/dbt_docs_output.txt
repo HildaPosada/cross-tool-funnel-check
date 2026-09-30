@@ -1,0 +1,8 @@
+23:37:06  Running with dbt=1.12.5
+23:37:06  Registered adapter: duckdb=1.11.0
+23:37:06  Found 3 models, 14 data tests, 1 seed, 501 macros
+23:37:06  
+23:37:06  Concurrency: 2 threads (target='local')
+23:37:06  
+23:37:06  Building catalog
+23:37:06  Catalog written to <project>/dbt/target/catalog.json
