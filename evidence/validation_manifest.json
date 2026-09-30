@@ -1,0 +1,24 @@
+{
+  "source": "bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*",
+  "extraction_sql": "sql/05_mixpanel_validation_extract.sql",
+  "source_csv_sha256": "72692231bcb07d24916f7fe175da3ec9882316ea99ac2ef5797a47a191d295cf",
+  "event_rows": 1353,
+  "users": 200,
+  "unique_source_event_ids": 1353,
+  "event_counts": {
+    "view_item": 1234,
+    "add_to_cart": 42,
+    "begin_checkout": 67,
+    "purchase": 10
+  },
+  "source_min_utc": "2020-11-01T12:43:29.273995Z",
+  "source_max_utc": "2020-12-03T12:45:50.743038Z",
+  "rebased_ndjson_sha256": "3bb337e5a31e609dd0b3626bf5c7dc04c566c2e1f10c9d461baba50ea3241cb6",
+  "timestamp_shift_ms": 181353600000,
+  "amplitude_project_id": 870324,
+  "bigquery_table": "lyrical-diagram-425923-h9.ecommerce_validation.events_200_users_rebased_v2",
+  "chart_url": "https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi",
+  "validated_at": "2026-09-30",
+  "precision": "milliseconds, original microseconds retained as provenance",
+  "raw_events_in_repository": false
+}

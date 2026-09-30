@@ -6,7 +6,7 @@ Portfolio analysis of GA4 ecommerce events: event quality, ordered conversion fu
 
 [Open the interactive Tableau Public dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention).
 
-![Ecommerce Product Analytics dashboard showing the ordered purchase funnel and weekly retention cohorts](dashboard/dashboard-screenshot.png)
+![Ecommerce Product Analytics dashboard showing the ordered purchase funnel and weekly retention cohorts](dashboard/dashboard-screenshot.jpg)
 
 The dashboard uses Google's obfuscated GA4 ecommerce sample for November 1, 2020 through January 31, 2021. Treat the results as a methods demonstration, not a commercial recommendation.
 
@@ -19,7 +19,7 @@ The dashboard uses Google's obfuscated GA4 ecommerce sample for November 1, 2020
 
 ## Project files
 
-- `sql/`: four BigQuery GoogleSQL analyses.
+- `sql/`: BigQuery GoogleSQL analyses and cross-tool validation queries.
 - `data/exports/`: aggregate CSV outputs from those queries.
 - `dashboard/`: Tableau build notes and dashboard screenshot.
 - `docs/`: event definitions and the cross-tool validation protocol.
@@ -45,4 +45,15 @@ The dashboard uses Google's obfuscated GA4 ecommerce sample for November 1, 2020
 - [GA4 sample dataset](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset)
 - [BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox)
 
-The sample is obfuscated and covers only three months. Timestamp order can differ from reporting-date boundaries; missing identities, timestamp ties, repeat events, and finite observation affect interpretation. The sandbox tables can expire, so retain the SQL and aggregate exports. Cross-tool reconciliation is pending.
+The sample is obfuscated and covers only three months. Timestamp order can differ from reporting-date boundaries; missing identities, timestamp ties, repeat events, and finite observation affect interpretation. The sandbox tables can expire, so retain the SQL and aggregate exports. A separate 200-user event-level validation now matches BigQuery and Amplitude at all four funnel steps. This does not validate the full-population Tableau counts against Amplitude. See [validation results](docs/validation_results.md).
+
+## Event-level cross-tool validation
+
+Matched ordered funnel in BigQuery and Amplitude: **200 → 13 → 7 → 1 users**, with zero difference at each step. The shared extract contains 1,353 events from 200 deterministically selected users.
+
+Amplitude's current free plan blocks 2020 charts. For this validation experiment only, every timestamp was shifted by the same 181,353,600,000 milliseconds into August 2026 in both tools. Original timestamps are retained. This preserves event order and elapsed conversion windows; it does not represent real 2026 activity.
+
+- [Validation method, results, and limitations](docs/validation_results.md)
+- [Comparison CSV](evidence/funnel_comparison.csv)
+- [Saved Amplitude chart](https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi) (access may require the project account)
+- dbt model and tests: not yet implemented. Course completion, resume updates, and applications are not claimed.

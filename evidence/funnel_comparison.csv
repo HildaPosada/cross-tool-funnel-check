@@ -1,0 +1,5 @@
+step,event,bigquery_users,amplitude_users,difference
+1,view_item,200,200,0
+2,add_to_cart,13,13,0
+3,begin_checkout,7,7,0
+4,purchase,1,1,0

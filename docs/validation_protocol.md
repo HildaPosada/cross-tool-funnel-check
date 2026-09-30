@@ -1,6 +1,6 @@
 # Cross-tool validation protocol
 
-Status: not executed. This is a separate experiment, not a comparison of unrelated GA4 and Kaggle counts.
+Status: executed for a bounded 200-user sample in BigQuery and Amplitude; see [results](validation_results.md). This is a separate experiment, not a comparison of unrelated GA4 and Kaggle counts.
 
 1. Select one documented source file and a small fixed time range. Record URL, license, SHA-256, row count, timezone, and extraction rule.
 2. Retain all events for selected users in the range. Avoid independent row sampling, which can break sequences. Use a bounded slice that fits the chosen platform's current import limits.
