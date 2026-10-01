@@ -58,8 +58,8 @@ Amplitude's current free plan blocks 2020 charts. For this validation experiment
 - [Validation method, results, and limitations](docs/validation_results.md)
 - [Comparison CSV](evidence/funnel_comparison.csv)
 - [Saved Amplitude chart](https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi) (access may require the project account)
-- dbt: implemented and executed locally on DuckDB; three models and 14 passing data tests. dbt Fundamentals certification is in progress. BigQuery dbt deployment, course completion, resume updates, and applications are not claimed.
+- dbt: implemented and executed on BigQuery and locally on DuckDB; three models and 14 passing data tests. dbt Fundamentals certification is in progress. Course completion, resume updates, and applications are not claimed.
 
 ## dbt exercise
 
-A [local DuckDB dbt project](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. dbt BigQuery deployment remains pending. dbt Fundamentals certification is in progress; completion is not yet claimed.
+A [dbt project with BigQuery and DuckDB targets](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. [BigQuery execution evidence](evidence/dbt_bigquery_summary.json) confirms three materialized warehouse models and 14 passing tests. dbt Fundamentals certification is in progress; completion is not yet claimed.

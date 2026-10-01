@@ -12,6 +12,7 @@ models:
 seeds:
   ecommerce_analytics:
     validation_events:
+      +enabled: "{{ target.type != 'bigquery' }}"
       +column_types:
         distinct_id: varchar
         event: varchar

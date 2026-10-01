@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: validation
+    database: lyrical-diagram-425923-h9
+    schema: ecommerce_validation
+    tables:
+      - name: events_200_users_v1
+        description: Original hashed 1353-event extract already validated against Amplitude.

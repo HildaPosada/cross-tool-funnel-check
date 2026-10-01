@@ -1,0 +1,117 @@
+{
+  "adapter": "bigquery",
+  "dbt_version": "1.12.5",
+  "executed_at": "2026-10-01T03:39:58.595889Z",
+  "project": "lyrical-diagram-425923-h9",
+  "dataset": "ecommerce_validation",
+  "source_table": "events_200_users_v1",
+  "funnel": [
+    {
+      "step_order": 1,
+      "event_name": "view_item",
+      "users": 200
+    },
+    {
+      "step_order": 2,
+      "event_name": "add_to_cart",
+      "users": 13
+    },
+    {
+      "step_order": 3,
+      "event_name": "begin_checkout",
+      "users": 7
+    },
+    {
+      "step_order": 4,
+      "event_name": "purchase",
+      "users": 1
+    }
+  ],
+  "build_results": [
+    {
+      "node": "test.ecommerce_analytics.adversarial_funnel_cases",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "model.ecommerce_analytics.stg_events",
+      "status": "success",
+      "failures": null
+    },
+    {
+      "node": "test.ecommerce_analytics.accepted_values_stg_events_event_name__view_item__add_to_cart__begin_checkout__purchase.3fd3eaa33d",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_event_name.682bd9eda3",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_event_time_ms.329ef86f1c",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_source_event_id.796376067b",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_stg_events_user_id.63ec98fbc4",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.sample_coverage",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.unique_stg_events_source_event_id.afde4066d2",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "model.ecommerce_analytics.int_funnel_paths",
+      "status": "success",
+      "failures": null
+    },
+    {
+      "node": "test.ecommerce_analytics.path_order_and_window",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "model.ecommerce_analytics.fct_funnel",
+      "status": "success",
+      "failures": null
+    },
+    {
+      "node": "test.ecommerce_analytics.funnel_monotonic",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.funnel_matches_independent_baseline",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_fct_funnel_step_order.8ebcb7910f",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.not_null_fct_funnel_users.54b473a1f9",
+      "status": "pass",
+      "failures": 0
+    },
+    {
+      "node": "test.ecommerce_analytics.unique_fct_funnel_step_order.fb99f792ae",
+      "status": "pass",
+      "failures": 0
+    }
+  ]
+}

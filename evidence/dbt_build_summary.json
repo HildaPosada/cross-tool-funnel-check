@@ -108,6 +108,6 @@
     "exact_boundary_ms": 604800000,
     "exact_boundary_expected_step": 3
   },
-  "bigquery_dbt_execution": "not run; local ADC unavailable",
+  "bigquery_dbt_execution": "completed; see dbt_bigquery_summary.json",
   "fundamentals_completion": "in progress; completion not yet claimed"
 }

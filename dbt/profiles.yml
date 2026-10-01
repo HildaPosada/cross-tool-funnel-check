@@ -5,3 +5,13 @@ ecommerce_analytics:
       type: duckdb
       path: analytics.duckdb
       threads: 2
+    bigquery:
+      type: bigquery
+      method: "{{ 'oauth-secrets' if env_var('DBT_BIGQUERY_ACCESS_TOKEN', '') else 'oauth' }}"
+      token: "{{ env_var('DBT_BIGQUERY_ACCESS_TOKEN', '') }}"
+      project: lyrical-diagram-425923-h9
+      dataset: ecommerce_validation
+      location: US
+      threads: 2
+      job_execution_timeout_seconds: 300
+      maximum_bytes_billed: 1000000000

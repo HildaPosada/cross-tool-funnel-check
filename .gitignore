@@ -10,3 +10,7 @@ dbt/*.duckdb*
 dbt/seeds/validation_events.csv
 
 dbt/.user.yml
+dbt/.venv-bigquery/
+dbt/*-bigquery.log
+dbt/build-run-results.json
+dbt/bigquery-summary.json

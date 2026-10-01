@@ -50,7 +50,7 @@ A real `dbt build` loaded the 1,353-row seed, created three table models, and pa
 
 The adversarial fixture also tests ties, wrong order, later entries, and the deadline. Moving a purchase to 604799999 milliseconds after entry while retaining a stale expected step of three returned one failing row: the actual completed step was four. Correcting the expectation restored a passing build. A separate purchase exactly at 604800000 milliseconds remains excluded. This demonstrates how returning unexpected rows makes a dbt data test fail.
 
-[Build results](../evidence/dbt_build_summary.json), [passing log](../evidence/dbt_build_output.txt), [intentional failure log](../evidence/dbt_boundary_failure.txt), and [screenshot](../evidence/dbt-build.jpg) record the execution. Documentation was generated and served locally. **dbt ran on DuckDB; dbt deployment to BigQuery has not been demonstrated.** dbt Fundamentals certification is in progress and is not claimed complete.
+[Build results](../evidence/dbt_build_summary.json), [passing log](../evidence/dbt_build_output.txt), [intentional failure log](../evidence/dbt_boundary_failure.txt), and [screenshot](../evidence/dbt-build.jpg) record the execution. Documentation was generated and served locally. The project also ran in **BigQuery**, materializing the three models in `ecommerce_validation` and passing the same 14 tests. Querying the warehouse funnel returned **200 → 13 → 7 → 1**. BigQuery uses the existing validated source table and skips the local seed. [Warehouse execution evidence](../evidence/dbt_bigquery_summary.json) and [build log](../evidence/dbt_bigquery_build_output.txt) confirm the run. The synthetic fixture and one reserved alias were made portable; the DuckDB build also passed again. dbt Fundamentals certification is in progress and is not claimed complete.
 
 ## Limitations and next investigation
 
@@ -62,4 +62,4 @@ Next analytical work would segment the view-to-cart loss by device, traffic sour
 
 ## Portfolio status
 
-The published Tableau dashboard, BigQuery–Amplitude sample comparison, local dbt execution, and this case study are complete. dbt Fundamentals certification is in progress. BigQuery dbt deployment is pending. The resume wording below is a draft for the learner to add to their resume; an actual resume has not been edited.
+The published Tableau dashboard, BigQuery–Amplitude sample comparison, local dbt execution, and this case study are complete. dbt Fundamentals certification is in progress. BigQuery dbt execution is complete. The resume wording below is a draft for the learner to add to their resume; an actual resume has not been edited.

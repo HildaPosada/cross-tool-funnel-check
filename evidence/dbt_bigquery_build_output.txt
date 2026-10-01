@@ -1,0 +1,49 @@
+03:39:30  Running with dbt=1.12.5
+03:39:32  Registered adapter: bigquery=1.12.1
+03:39:32  [WARNING]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.ecommerce_analytics.validation_events
+03:39:33  Found 3 models, 14 data tests, 1 source, 562 macros
+03:39:33  
+03:39:33  Concurrency: 2 threads (target='bigquery')
+03:39:33  
+03:39:35  1 of 17 START sql table model ecommerce_validation.stg_events .................. [RUN]
+03:39:35  2 of 17 START test adversarial_funnel_cases .................................... [RUN]
+03:39:36  2 of 17 PASS adversarial_funnel_cases .......................................... [PASS in 1.12s]
+03:39:40  1 of 17 OK created sql table model ecommerce_validation.stg_events ............. [CREATE TABLE (1.4k rows, 205.2 KiB processed) in 5.96s]
+03:39:40  3 of 17 START test accepted_values_stg_events_event_name__view_item__add_to_cart__begin_checkout__purchase  [RUN]
+03:39:40  4 of 17 START test not_null_stg_events_event_name .............................. [RUN]
+03:39:42  3 of 17 PASS accepted_values_stg_events_event_name__view_item__add_to_cart__begin_checkout__purchase  [PASS in 1.13s]
+03:39:42  5 of 17 START test not_null_stg_events_event_time_ms ........................... [RUN]
+03:39:42  4 of 17 PASS not_null_stg_events_event_name .................................... [PASS in 1.25s]
+03:39:42  6 of 17 START test not_null_stg_events_source_event_id ......................... [RUN]
+03:39:43  5 of 17 PASS not_null_stg_events_event_time_ms ................................. [PASS in 1.19s]
+03:39:43  7 of 17 START test not_null_stg_events_user_id ................................. [RUN]
+03:39:43  6 of 17 PASS not_null_stg_events_source_event_id ............................... [PASS in 1.38s]
+03:39:43  8 of 17 START test sample_coverage ............................................. [RUN]
+03:39:44  7 of 17 PASS not_null_stg_events_user_id ....................................... [PASS in 1.45s]
+03:39:44  9 of 17 START test unique_stg_events_source_event_id ........................... [RUN]
+03:39:44  8 of 17 PASS sample_coverage ................................................... [PASS in 1.16s]
+03:39:46  9 of 17 PASS unique_stg_events_source_event_id ................................. [PASS in 1.38s]
+03:39:46  10 of 17 START sql table model ecommerce_validation.int_funnel_paths ........... [RUN]
+03:39:49  10 of 17 OK created sql table model ecommerce_validation.int_funnel_paths ...... [CREATE TABLE (1.2k rows, 118.0 KiB processed) in 3.44s]
+03:39:49  11 of 17 START test path_order_and_window ...................................... [RUN]
+03:39:50  11 of 17 PASS path_order_and_window ............................................ [PASS in 1.21s]
+03:39:50  12 of 17 START sql table model ecommerce_validation.fct_funnel ................. [RUN]
+03:39:54  12 of 17 OK created sql table model ecommerce_validation.fct_funnel ............ [CREATE TABLE (4.0 rows, 85.6 KiB processed) in 3.94s]
+03:39:54  13 of 17 START test funnel_matches_independent_baseline ........................ [RUN]
+03:39:54  14 of 17 START test funnel_monotonic ........................................... [RUN]
+03:39:55  14 of 17 PASS funnel_monotonic ................................................. [PASS in 1.14s]
+03:39:55  15 of 17 START test not_null_fct_funnel_step_order ............................. [RUN]
+03:39:56  13 of 17 PASS funnel_matches_independent_baseline .............................. [PASS in 1.27s]
+03:39:56  16 of 17 START test not_null_fct_funnel_users .................................. [RUN]
+03:39:57  15 of 17 PASS not_null_fct_funnel_step_order ................................... [PASS in 1.26s]
+03:39:57  17 of 17 START test unique_fct_funnel_step_order ............................... [RUN]
+03:39:57  16 of 17 PASS not_null_fct_funnel_users ........................................ [PASS in 1.63s]
+03:39:58  17 of 17 PASS unique_fct_funnel_step_order ..................................... [PASS in 1.41s]
+03:39:58  
+03:39:58  Finished running 3 table models, 14 data tests in 0 hours 0 minutes and 25.55 seconds (25.55s).
+03:39:58  
+03:39:58  Completed successfully
+03:39:58  
+03:39:58  Done. PASS=17 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=17

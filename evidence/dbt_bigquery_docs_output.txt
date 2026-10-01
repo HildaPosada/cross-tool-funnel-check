@@ -1,0 +1,13 @@
+03:40:02  Running with dbt=1.12.5
+03:40:03  Registered adapter: bigquery=1.12.1
+03:40:04  [WARNING]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.ecommerce_analytics.validation_events
+03:40:04  Found 3 models, 14 data tests, 1 source, 562 macros
+03:40:04  
+03:40:04  Concurrency: 2 threads (target='bigquery')
+03:40:04  
+03:40:05  Building catalog
+/home/hildaecogreen/dbt-bigquery-execution/.venv-bigquery/lib/python3.12/site-packages/agate/type_tester.py:92: RuntimeWarning: "table_owner" does not match the name of any column in this table.
+  warnings.warn('"%s" does not match the name of any column in this table.' % name, RuntimeWarning)
+03:40:09  Catalog written to /home/hildaecogreen/dbt-bigquery-execution/target/catalog.json
