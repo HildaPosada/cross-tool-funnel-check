@@ -1,6 +1,6 @@
 # dbt funnel exercise
 
-Execution adapters: BigQuery in Google Cloud Shell and DuckDB locally. Both builds completed successfully September 30, 2026: three models and 14 passing tests per adapter; dbt Fundamentals certification is in progress; completion is not yet claimed.
+Execution adapters: BigQuery in Google Cloud Shell and DuckDB locally. Both builds completed successfully September 30, 2026 (America/Los_Angeles); the BigQuery evidence records October 1, 2026 at 03:39:58 UTC: three models and 14 passing tests per adapter; dbt Fundamentals certification is in progress; completion is not yet claimed.
 
 ## Reproduce
 
