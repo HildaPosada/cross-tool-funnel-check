@@ -7,8 +7,6 @@
 [![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=111111)](https://duckdb.org/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
-> ✨ Follow the journey. Check the numbers. Show the receipts.
-
 ## Can Two Analytics Tools Agree on the Same Purchase Journey?
 
 I used Google's public ecommerce event sample to build a dashboard, then checked the same small event extract in BigQuery, Amplitude, and dbt.
