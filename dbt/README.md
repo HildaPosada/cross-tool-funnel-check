@@ -1,6 +1,6 @@
 # dbt funnel exercise
 
-Execution adapter: DuckDB locally. Executed successfully September 30, 2026: three models and 14 passing tests. BigQuery dbt deployment has not been run; dbt Fundamentals course completion remains unverified.
+Execution adapter: DuckDB locally. Executed successfully September 30, 2026: three models and 14 passing tests. BigQuery dbt deployment has not been run; dbt Fundamentals certification is in progress; completion is not yet claimed.
 
 ## Reproduce
 

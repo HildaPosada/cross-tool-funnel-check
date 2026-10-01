@@ -61,7 +61,7 @@ The synthetic fixture is `dbt/tests/adversarial_funnel_cases.sql`. Moving its bo
 
 Evidence: [build output](../evidence/dbt_build_output.txt), [intentional failure](../evidence/dbt_boundary_failure.txt), [machine-readable results](../evidence/dbt_build_summary.json), and [build screenshot](../evidence/dbt-build.jpg). No raw user records or credentials are published.
 
-This demonstrates actual local dbt execution. It does not demonstrate dbt deployed on BigQuery: local application-default credentials were unavailable. dbt Fundamentals completion remains unverified and must be completed by the learner. Next: complete the course and write the portfolio case study, separating the full-population Tableau findings from the bounded validation sample.
+This demonstrates actual local dbt execution. It does not demonstrate dbt deployed on BigQuery: local application-default credentials were unavailable. dbt Fundamentals certification is in progress; completion is not yet claimed. The [case study](case_study.md) now connects the full-population Tableau findings with the bounded validation sample and local dbt work. Next: complete the course and optionally deploy dbt to BigQuery.
 
 ## Official references
 

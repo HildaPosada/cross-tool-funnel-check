@@ -17,6 +17,8 @@ The dashboard uses Google's obfuscated GA4 ecommerce sample for November 1, 2020
 - Largest observed step drop-off: product view to add to cart (80.32%). This identifies a stage to investigate, not the cause.
 - Following-week activity retention: 2.47% to 6.73% across observable cohorts. Activity includes any recorded event, not only purchases.
 
+Read the [case study](docs/case_study.md) for the business questions, findings, validation evidence, and next investigations. [Resume project wording](docs/resume_project.md) is available as a draft.
+
 ## Project files
 
 - `sql/`: BigQuery GoogleSQL analyses and cross-tool validation queries.
@@ -56,8 +58,8 @@ Amplitude's current free plan blocks 2020 charts. For this validation experiment
 - [Validation method, results, and limitations](docs/validation_results.md)
 - [Comparison CSV](evidence/funnel_comparison.csv)
 - [Saved Amplitude chart](https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi) (access may require the project account)
-- dbt model and tests: not yet implemented. Course completion, resume updates, and applications are not claimed.
+- dbt: implemented and executed locally on DuckDB; three models and 14 passing data tests. dbt Fundamentals certification is in progress. BigQuery dbt deployment, course completion, resume updates, and applications are not claimed.
 
 ## dbt exercise
 
-A [local DuckDB dbt project](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. dbt BigQuery deployment and Fundamentals course completion remain pending.
+A [local DuckDB dbt project](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. dbt BigQuery deployment remains pending. dbt Fundamentals certification is in progress; completion is not yet claimed.

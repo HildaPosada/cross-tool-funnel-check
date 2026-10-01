@@ -109,5 +109,5 @@
     "exact_boundary_expected_step": 3
   },
   "bigquery_dbt_execution": "not run; local ADC unavailable",
-  "fundamentals_completion": "not verified; user completion required"
+  "fundamentals_completion": "in progress; completion not yet claimed"
 }
