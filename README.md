@@ -1,5 +1,14 @@
 # Product Analytics: Funnel, Retention & Event Validation
 
+[![BigQuery](https://img.shields.io/badge/BigQuery-4285F4?style=for-the-badge&logo=googlebigquery&logoColor=white)](https://cloud.google.com/bigquery)
+[![Tableau](https://img.shields.io/badge/Tableau-7C3AED?style=for-the-badge&logo=tableau&logoColor=white)](https://www.tableau.com/)
+[![Amplitude](https://img.shields.io/badge/Amplitude-005AF0?style=for-the-badge&logo=amplitude&logoColor=white)](https://amplitude.com/)
+[![dbt](https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white)](https://www.getdbt.com/)
+[![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=111111)](https://duckdb.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+
+> ✨ Follow the journey. Check the numbers. Show the receipts.
+
 ## Can Two Analytics Tools Agree on the Same Purchase Journey?
 
 I used Google's public ecommerce event sample to build a dashboard, then checked the same small event extract in BigQuery, Amplitude, and dbt.
