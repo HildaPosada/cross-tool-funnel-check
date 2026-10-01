@@ -32,7 +32,7 @@ The dashboard uses the full sample. The independent tool comparison uses a bound
 
 ## Check the work or run it yourself
 
-- [Case study](docs/case_study.md): the plain-language story.
+- [The story behind this project](docs/case_study.md)
 - [Validation results](docs/validation_results.md): counting rules, screenshots, and limitations.
 - [Event dictionary](docs/event_dictionary.md): what the tracked events mean.
 - [BigQuery SQL](sql/): source audit, dashboard calculations, and validation queries.
