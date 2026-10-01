@@ -40,7 +40,6 @@ The dashboard uses the full sample. The independent tool comparison uses a bound
 - [Dashboard setup](dashboard/README.md): how the views were built.
 - [dbt project](dbt/README.md): models, tests, and commands for both databases.
 - [BigQuery execution evidence](evidence/dbt_bigquery_summary.json): the actual warehouse run and funnel counts.
-- [Resume project wording](docs/resume_project.md): a draft with the tools actually used.
 
 Keep raw events and credentials out of Git.
 
