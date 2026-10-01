@@ -1,5 +1,7 @@
 # Product Analytics: Funnel, Retention & Event Validation
 
+## Can Two Analytics Tools Agree on the Same Purchase Journey?
+
 I used Google's public ecommerce event sample to build a dashboard, then checked the same small event extract in BigQuery, Amplitude, and dbt.
 
 **[Read the story behind the project](docs/case_study.md).** It explains what I found, the problem I ran into, and how I checked my work.
