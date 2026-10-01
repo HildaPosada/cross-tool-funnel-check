@@ -1,8 +1,9 @@
 # Resume project wording
 
-**Ecommerce Product Analytics — BigQuery, Tableau, Amplitude, dbt, DuckDB**
+**Product Analytics: Funnel, Retention & Event Validation**  
+BigQuery, Tableau, Amplitude, dbt, DuckDB
 
-[Project repository](https://github.com/HildaPosada/ecommerce-product-analytics) · [Case study](case_study.md) · [Tableau dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention)
+[Project repository](https://github.com/HildaPosada/cross-tool-funnel-check) · [Case study](case_study.md) · [Tableau dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention)
 
 - Built a Tableau dashboard from BigQuery GA4 ecommerce analyses covering ordered conversion and weekly activity retention; measured 4.63% view-to-purchase conversion and identified view-to-cart as the largest observed drop-off.
 - Reconciled an identical 1,353-event, 200-user extract across BigQuery and Amplitude, matching all four ordered funnel counts with zero differences under shared seven-day rules.
