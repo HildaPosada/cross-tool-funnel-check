@@ -38,6 +38,10 @@ To test consistency beyond dashboard formatting, a deterministic 200-user extrac
 | Begin checkout | 7 | 7 | 0 |
 | Purchase | 1 | 1 | 0 |
 
+![Amplitude ordered funnel with seven-day window and unique-user counting](../evidence/amplitude-funnel.png)
+
+![Amplitude step counts and 0.500% conversion](../evidence/amplitude-funnel-counts.png)
+
 All four counts matched. Amplitude's chart history limit prevented the original 2020 dates from being charted, so both tools used a clearly labeled copy shifted by the identical constant offset of 181,353,600,000 milliseconds into August 2026. Original timestamps were retained; elapsed durations and ordering were preserved. The rebased dates are an experimental accommodation, not real 2026 business activity.
 
 This sample comparison has different scope and entry rules from the full-population dashboard. Its 200 → 13 → 7 → 1 counts should not be equated with the Tableau counts. The [validation results](validation_results.md) document the shared rules, import receipts, screenshots, and limitations.

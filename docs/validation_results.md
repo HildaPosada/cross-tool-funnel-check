@@ -34,7 +34,9 @@ Both Amplitude imports returned HTTP 200 and `events_ingested: 1353`. BigQuery m
 
 Conversion from view is 6.5%, 3.5%, and 0.5% at successive steps. All four step counts agree exactly. No unexplained funnel discrepancy remains in this sample.
 
-![Amplitude funnel](../evidence/amplitude-funnel.jpg)
+![Amplitude ordered funnel: 200 viewers, 13 cart users, 7 checkout users, and 1 purchaser within seven days](../evidence/amplitude-funnel.png)
+
+![Amplitude counts table confirming 200 → 13 → 7 → 1 users and 0.500% conversion](../evidence/amplitude-funnel-counts.png)
 ![BigQuery funnel](../evidence/bigquery-funnel.jpg)
 
 Checksums, event counts, source coverage, table names, and chart URL are recorded in `evidence/validation_manifest.json`. Import receipts and comparison CSV are in `evidence/`. Raw event extracts and API keys are deliberately excluded from this repository.
