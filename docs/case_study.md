@@ -1,69 +1,86 @@
-# Ecommerce conversion, retention, and event validation
+# The Story Behind This Repo
 
-## Business questions
+## The question
 
-Where do observed users drop out of the ecommerce purchase journey, how often do cohorts return, and can the same event-level funnel be reproduced across a warehouse, a product analytics platform, and a tested transformation pipeline?
+If a website tracks what visitors do, can you trust the numbers two different tools report about the same visitors?
 
-The analysis uses Google's public obfuscated GA4 ecommerce sample from November 1, 2020 through January 31, 2021. The purpose is to demonstrate a reproducible analytical method. The sample does not justify recommendations about an actual merchant's current performance.
+I wanted to check that with actual event data. I built a purchase funnel, then used a second tool to check the same calculation independently.
 
-## Approach and metric definitions
+## What the dashboard shows
 
-BigQuery SQL audited events and produced aggregate funnel and retention outputs. Tableau Public presents those outputs in an ordered funnel and weekly retention heatmap. The [event dictionary](event_dictionary.md), [SQL](../sql/), and [dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention) preserve the definitions and implementation.
+![Tableau dashboard showing the purchase funnel and weekly return activity](../dashboard/dashboard-screenshot.jpg)
 
-The dashboard counts distinct non-null browser/device identifiers. Its ordered funnel anchors on the first observed `view_item`, followed by the earliest `add_to_cart`, `begin_checkout`, and `purchase` strictly after the preceding step, across the analysis window. Events can span sessions and products. Equal timestamps do not establish order. This is a user journey measure, not an item-level attribution model.
+In the full sample, **61,252 visitor IDs viewed a product and 2,833 completed the purchase journey**. That is a **4.63% view-to-purchase rate**.
 
-Retention cohorts use each identifier's first observed activity week. A return means any recorded activity in a later Monday-to-Sunday calendar week. Only fully observable weeks are compared. First observation is not proven acquisition, and activity retention is not purchase retention.
+The journey had four steps, completed in this order:
 
-## Findings
+| Step | Visitor IDs |
+|---|---:|
+| Viewed a product | 61,252 |
+| Added to cart | 12,052 |
+| Started checkout | 4,909 |
+| Purchased | 2,833 |
 
-| Ordered step | Users | Conversion from previous step |
-|---|---:|---:|
-| Product view | 61,252 | — |
-| Add to cart | 12,052 | 19.68% |
-| Begin checkout | 4,909 | 40.73% |
-| Purchase | 2,833 | 57.71% |
+The biggest drop was from viewing a product to adding it to a cart. **80.32% of viewers did not reach the cart step in this ordered journey.** That gives an analyst a place to start asking questions. It does not explain why visitors left.
 
-View-to-purchase conversion is **4.63%**. The largest observed loss is view to cart: **49,200 identifiers, or 80.32%** of viewers. This locates a stage for investigation; it does not explain why users left. Product mix, browsing intent, availability, device experience, and instrumentation could all affect the result.
+The dashboard also tracks return activity by week. Between **2.47% and 6.73%** of visitor IDs in the eligible weekly groups returned the following week. A return means any recorded activity, not necessarily another purchase.
 
-Following-week activity retention ranges from **2.47% to 6.73%** across cohorts with an observable next week. These rates describe return activity in this sample. They do not establish long-term customer loyalty or the effect of a product change. The [aggregate exports](../data/exports/) support both sets of findings.
+[Open the interactive Tableau dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention).
 
-## Independent event-level validation
+## The data
 
-To test consistency beyond dashboard formatting, a deterministic 200-user extract retained 1,353 events across the four funnel event types. The same hashed identities and event rows were used in BigQuery and Amplitude. The comparison used unique users, strictly ordered steps, epoch-millisecond precision, and seven elapsed days with an exclusive upper bound. It allowed any qualifying entry path within the available extract.
+I used Google's public GA4 ecommerce sample from November 2020 through January 2021. Google has obscured parts of this data to protect the source business.
 
-| Step | BigQuery | Amplitude | Difference |
-|---|---:|---:|---:|
-| Product view | 200 | 200 | 0 |
-| Add to cart | 13 | 13 | 0 |
-| Begin checkout | 7 | 7 | 0 |
-| Purchase | 1 | 1 | 0 |
+The counts use browser or device identifiers. I call them visitor IDs because one identifier does not prove one person. The journey can also span sessions and products, so it is not a measure of one item moving through one shopping session.
 
-![Amplitude ordered funnel with seven-day window and unique-user counting](../evidence/amplitude-funnel.png)
+## Checking whether the tools agree
 
-![Amplitude step counts and 0.500% conversion](../evidence/amplitude-funnel-counts.png)
+For the independent check, I selected **200 visitor IDs and 1,353 events**. I used the exact same extract in BigQuery, where I counted the journey with SQL, and Amplitude, where I configured a funnel chart.
 
-All four counts matched. Amplitude's chart history limit prevented the original 2020 dates from being charted, so both tools used a clearly labeled copy shifted by the identical constant offset of 181,353,600,000 milliseconds into August 2026. Original timestamps were retained; elapsed durations and ordering were preserved. The rebased dates are an experimental accommodation, not real 2026 business activity.
+Both tools counted unique visitor IDs. Both required the four steps in order, with seven elapsed days to complete the journey. I matched the identities, event names, timestamp precision, and counting rules.
 
-This sample comparison has different scope and entry rules from the full-population dashboard. Its 200 → 13 → 7 → 1 counts should not be equated with the Tableau counts. The [validation results](validation_results.md) document the shared rules, import receipts, screenshots, and limitations.
+I hit a problem before I could compare the results. Amplitude accepted the historical events, but the project's plan would not display a chart for 2020.
 
-## Tested dbt implementation
+I shifted every timestamp forward by the same amount in both tools. It was like sliding the whole calendar forward together. The dates changed, but event order and time between events stayed the same. I retained the original timestamps alongside the shifted ones and labeled the shifted copy as a validation experiment.
 
-A local DuckDB dbt project models the same original validation extract through `stg_events`, `int_funnel_paths`, and `fct_funnel`. The staging model preserves source rows and normalizes timestamp precision. The path model builds successive events, and the final model counts distinct users by completed step.
+After that, both tools returned **200 → 13 → 7 → 1**. Every step matched, with zero difference.
 
-A real `dbt build` loaded the 1,353-row seed, created three table models, and passed 14 data tests. Its funnel reproduced **200 → 13 → 7 → 1**. Tests cover required fields, unique source event identifiers, accepted event names, sample coverage, independent baseline counts, monotonicity, timestamp ordering, and conversion-window bounds.
+![Amplitude funnel showing the matching counts, seven-day window, and unique-user setting](../evidence/amplitude-funnel.png)
 
-The adversarial fixture also tests ties, wrong order, later entries, and the deadline. Moving a purchase to 604799999 milliseconds after entry while retaining a stale expected step of three returned one failing row: the actual completed step was four. Correcting the expectation restored a passing build. A separate purchase exactly at 604800000 milliseconds remains excluded. This demonstrates how returning unexpected rows makes a dbt data test fail.
+![Amplitude counts table showing 200, 13, 7, and 1](../evidence/amplitude-funnel-counts.png)
 
-[Build results](../evidence/dbt_build_summary.json), [passing log](../evidence/dbt_build_output.txt), [intentional failure log](../evidence/dbt_boundary_failure.txt), and [screenshot](../evidence/dbt-build.jpg) record the execution. Documentation was generated and served locally. The project also ran in **BigQuery**, materializing the three models in `ecommerce_validation` and passing the same 14 tests. Querying the warehouse funnel returned **200 → 13 → 7 → 1**. BigQuery uses the existing validated source table and skips the local seed. [Warehouse execution evidence](../evidence/dbt_bigquery_summary.json) and [build log](../evidence/dbt_bigquery_build_output.txt) confirm the run. The synthetic fixture and one reserved alias were made portable; the DuckDB build also passed again. dbt Fundamentals certification is in progress and is not claimed complete.
+Those shifted dates do not represent real activity in August 2026. They let me check the method without buying a plan upgrade.
 
-## Limitations and next investigation
+## An automated check
 
-The data is obfuscated, observation is finite, identifiers are not verified people, and timestamps can tie. The full dashboard funnel can span products and sessions. The validation extract ends seven days after each user's first view, which can censor later entry paths. One purchaser in the sample provides little evidence about commercial performance.
+I then built a small transformation pipeline with dbt. It turns the event rows into the same ordered journey and checks for missing fields, duplicate event IDs, unexpected event names, incorrect ordering, and events outside the conversion window.
 
-Agreement between tools confirms the tested calculation under shared rules. It does not prove that source collection is complete, identities are correct, or the funnel reflects causality. Amplitude accepted the imported rows, but a full raw-event re-export reconciliation has not been performed.
+The pipeline has **three models and 14 tests**. It ran successfully on both **BigQuery and a local database called DuckDB**. BigQuery's final table returned the same **200 → 13 → 7 → 1** counts.
 
-Next analytical work would segment the view-to-cart loss by device, traffic source, and product where data permits; compare session- and item-level paths; audit timestamp ties and missing events; and investigate retention with longer observation. Any proposed product intervention should be evaluated with an appropriate experiment rather than inferred from funnel drop-off alone.
+I also tested whether a failure would be caught. In a synthetic example, a purchase exactly at the seven-day deadline should be excluded. I moved it one millisecond earlier but left the expected result unchanged. The test returned one unexpected row and failed. Correcting the expectation made it pass. I kept a separate example at the exact deadline to check that it still stays excluded.
 
-## Portfolio status
+The passing build and the deliberate failure are saved in the repository. They show what ran and what the tests caught.
 
-The published Tableau dashboard, BigQuery–Amplitude sample comparison, local dbt execution, and this case study are complete. dbt Fundamentals certification is in progress. BigQuery dbt execution is complete. The resume wording below is a draft for the learner to add to their resume; an actual resume has not been edited.
+## The limits
+
+The 200-ID comparison checks a method on a small sample. It is not a business conclusion about the full population. Its entry rules and observation window also differ from the full dashboard, so the two sets of counts should not be treated as interchangeable.
+
+The data covers three months, uses browser or device IDs, and has been obscured. Later journeys in the extract may have less than seven days of follow-up. Matching counts does not prove every event was collected correctly. I have not reconciled a full raw-event export from Amplitude.
+
+**dbt Fundamentals certification is in progress.** The implemented pipeline has run on BigQuery and DuckDB, but this is a portfolio exercise, not a production deployment.
+
+## Why I built this
+
+I wanted evidence that I can turn event data into a useful analysis and check the result independently.
+
+The next business question would be why so many viewers do not reach the cart step. I would look at device experience, traffic source, product availability, and browsing intent where the data supports it. The funnel tells me where to investigate. More evidence is needed to explain the cause or recommend a change.
+
+## Want the details?
+
+- [Validation rules, results, and limitations](validation_results.md)
+- [Event definitions](event_dictionary.md)
+- [BigQuery SQL](../sql/)
+- [dbt models and reproduction instructions](../dbt/README.md)
+- [Actual BigQuery dbt build output](../evidence/dbt_bigquery_build_output.txt)
+- [The intentional test failure](../evidence/dbt_boundary_failure.txt)
+- [Resume project wording](resume_project.md)

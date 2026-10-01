@@ -1,65 +1,49 @@
-# Ecommerce Product Analytics
+# Can Two Analytics Tools Agree on the Same Purchase Journey?
 
-Portfolio analysis of GA4 ecommerce events: event quality, ordered conversion funnels, and weekly user retention.
+I used Google's public ecommerce event sample to build a dashboard, then checked the same small event extract in BigQuery, Amplitude, and dbt.
 
-## Dashboard
+**[Read the story behind the project](docs/case_study.md).** It explains what I found, the problem I ran into, and how I checked my work.
 
-[Open the interactive Tableau Public dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention).
+![Tableau dashboard showing the purchase funnel and weekly return activity](dashboard/dashboard-screenshot.jpg)
 
-![Ecommerce Product Analytics dashboard showing the ordered purchase funnel and weekly retention cohorts](dashboard/dashboard-screenshot.jpg)
+## What I found
 
-The dashboard uses Google's obfuscated GA4 ecommerce sample for November 1, 2020 through January 31, 2021. Treat the results as a methods demonstration, not a commercial recommendation.
+In the full three-month sample, **61,252 visitor IDs viewed a product and 2,833 completed the purchase journey**. That is a **4.63% view-to-purchase rate**.
 
-## Key results
+The largest drop came between viewing a product and adding it to a cart: **80.32%**. That identifies a stage to investigate. It does not establish the cause.
 
-- Ordered funnel: 61,252 product viewers, 12,052 users adding to cart, 4,909 reaching checkout, and 2,833 purchasers.
-- View-to-purchase conversion: 4.63%.
-- Largest observed step drop-off: product view to add to cart (80.32%). This identifies a stage to investigate, not the cause.
-- Following-week activity retention: 2.47% to 6.73% across observable cohorts. Activity includes any recorded event, not only purchases.
+The dashboard also shows weekly return activity. Between **2.47% and 6.73%** of visitor IDs in groups with a fully observable following week returned that week. Any recorded event counts as activity.
 
-Read the [case study](docs/case_study.md) for the business questions, findings, validation evidence, and next investigations. [Resume project wording](docs/resume_project.md) is available as a draft.
+[Explore the Tableau dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention).
 
-## Project files
+## How I checked it
 
-- `sql/`: BigQuery GoogleSQL analyses and cross-tool validation queries.
-- `data/exports/`: aggregate CSV outputs from those queries.
-- `dashboard/`: Tableau build notes and dashboard screenshot.
-- `docs/`: event definitions and the cross-tool validation protocol.
+I selected **200 visitor IDs and 1,353 events**, then had BigQuery and Amplitude count the same four steps: viewed a product, added to cart, started checkout, and purchased. They agreed at every step: **200 → 13 → 7 → 1**.
 
-## Reproduce the analysis
+Amplitude's plan would not chart the original 2020 events. I moved every timestamp forward by the same amount in both tools and retained the originals. This changed the dates, while preserving event order and elapsed time. The shifted copy is a methods check, not evidence of real activity in 2026.
 
-1. Open [BigQuery](https://console.cloud.google.com/bigquery), select or create a project, and use the [BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox) if needed. Set the query dialect to GoogleSQL and location to US.
-2. Run `sql/01_event_audit.sql` first and review the estimated bytes before execution. Run each remaining SQL file separately.
-3. Export aggregate query results to `data/exports/` using the matching CSV filenames. Do not add raw events, credentials, or personal data to the repository.
-4. Connect each CSV separately in Tableau; see `dashboard/README.md` for the view setup and metric caveats.
-5. Use `docs/validation_protocol.md` to reconcile outputs against an independent implementation before claiming cross-tool validation.
+I also built and ran **three dbt models with 14 passing tests on both BigQuery and DuckDB**. An intentional boundary-test failure shows that the tests catch an incorrect expectation. The final warehouse table returns the same four counts.
 
-## Metric definitions
+## What to keep in mind
 
-- Identity: non-null `user_pseudo_id`, a browser/device identifier and not a verified person.
-- Unordered funnel: distinct users independently performing each event.
-- Ordered funnel: first observed view, then earliest cart strictly after that view, earliest checkout strictly after cart, and earliest purchase strictly after checkout. The path can span sessions and products across the analysis window; equal timestamps do not establish order.
-- Retention: first-observed activity week, followed by any activity in later Monday-to-Sunday calendar weeks. This is not acquisition or rolling seven-day retention.
-- Retention cohorts are reported only for fully observable weeks.
+The data is Google's obfuscated GA4 ecommerce sample for November 2020 through January 2021. A visitor ID represents a browser or device, not a verified person.
 
-## Sources and limitations
+The dashboard uses the full sample. The independent tool comparison uses a bounded 200-ID extract with different entry and follow-up rules. Agreement on that extract does not validate the full dashboard in Amplitude or explain why visitors drop out.
 
-- [GA4 sample dataset](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset)
-- [BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox)
+**dbt Fundamentals certification is in progress.** The analysis, dashboard, independent comparison, and dbt execution are complete. This remains a portfolio exercise rather than a production system.
 
-The sample is obfuscated and covers only three months. Timestamp order can differ from reporting-date boundaries; missing identities, timestamp ties, repeat events, and finite observation affect interpretation. The sandbox tables can expire, so retain the SQL and aggregate exports. A separate 200-user event-level validation now matches BigQuery and Amplitude at all four funnel steps. This does not validate the full-population Tableau counts against Amplitude. See [validation results](docs/validation_results.md).
+## Check the work or run it yourself
 
-## Event-level cross-tool validation
+- [Case study](docs/case_study.md): the plain-language story.
+- [Validation results](docs/validation_results.md): counting rules, screenshots, and limitations.
+- [Event dictionary](docs/event_dictionary.md): what the tracked events mean.
+- [BigQuery SQL](sql/): source audit, dashboard calculations, and validation queries.
+- [Aggregate results](data/exports/): the numbers behind the Tableau dashboard.
+- [Dashboard setup](dashboard/README.md): how the views were built.
+- [dbt project](dbt/README.md): models, tests, and commands for both databases.
+- [BigQuery execution evidence](evidence/dbt_bigquery_summary.json): the actual warehouse run and funnel counts.
+- [Resume project wording](docs/resume_project.md): a draft with the tools actually used.
 
-Matched ordered funnel in BigQuery and Amplitude: **200 → 13 → 7 → 1 users**, with zero difference at each step. The shared extract contains 1,353 events from 200 deterministically selected users.
+Start with the [event audit](sql/01_event_audit.sql) when reproducing the source analysis. Read the [validation protocol](docs/validation_protocol.md) before comparing tools. Follow the [dbt instructions](dbt/README.md) to run the tested pipeline. Keep raw events and credentials out of Git.
 
-Amplitude's current free plan blocks 2020 charts. For this validation experiment only, every timestamp was shifted by the same 181,353,600,000 milliseconds into August 2026 in both tools. Original timestamps are retained. This preserves event order and elapsed conversion windows; it does not represent real 2026 activity.
-
-- [Validation method, results, and limitations](docs/validation_results.md)
-- [Comparison CSV](evidence/funnel_comparison.csv)
-- [Saved Amplitude chart](https://app.amplitude.com/analytics/shy-mouse-812834/chart/l6rjd8yi) (access may require the project account)
-- dbt: implemented and executed on BigQuery and locally on DuckDB; three models and 14 passing data tests. dbt Fundamentals certification is in progress. Course completion, resume updates, and applications are not claimed.
-
-## dbt exercise
-
-A [dbt project with BigQuery and DuckDB targets](dbt/README.md) implements three models and 14 passing data tests against the identical event sample. Its funnel matches 200 → 13 → 7 → 1. [Execution evidence](evidence/dbt_build_summary.json) records the build. [BigQuery execution evidence](evidence/dbt_bigquery_summary.json) confirms three materialized warehouse models and 14 passing tests. dbt Fundamentals certification is in progress; completion is not yet claimed.
+Source: [Google's public GA4 ecommerce sample](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset).
