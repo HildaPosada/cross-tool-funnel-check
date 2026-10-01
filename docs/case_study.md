@@ -47,8 +47,6 @@ After that, both tools returned **200 → 13 → 7 → 1**. Every step matched, 
 
 ![Amplitude funnel showing the matching counts, seven-day window, and unique-user setting](../evidence/amplitude-funnel.png)
 
-![Amplitude counts table showing 200, 13, 7, and 1](../evidence/amplitude-funnel-counts.png)
-
 Those shifted dates do not represent real activity in August 2026. They let me check the method without buying a plan upgrade.
 
 ## An automated check

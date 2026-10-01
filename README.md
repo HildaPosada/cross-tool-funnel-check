@@ -42,6 +42,6 @@ The dashboard uses the full sample. The independent tool comparison uses a bound
 - [BigQuery execution evidence](evidence/dbt_bigquery_summary.json): the actual warehouse run and funnel counts.
 - [Resume project wording](docs/resume_project.md): a draft with the tools actually used.
 
-Start with the [event audit](sql/01_event_audit.sql) when reproducing the source analysis. Use the [completed validation method and results](docs/validation_results.md) when comparing tools. Follow the [dbt instructions](dbt/README.md) to run the tested pipeline. Keep raw events and credentials out of Git.
+Keep raw events and credentials out of Git.
 
 Source: [Google's public GA4 ecommerce sample](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset).
