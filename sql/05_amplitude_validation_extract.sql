@@ -1,7 +1,8 @@
--- Deterministic event-level sample for a matched Mixpanel funnel test.
+-- Deterministic event-level sample for a matched Amplitude funnel test.
 -- Cohort: first view_item from Nov 1 through Nov 30, 2020 (UTC).
 -- Keep every selected user's funnel event in the seven days after that view.
--- Export the result as CSV; import this exact file into Mixpanel and BigQuery.
+-- Export as CSV; use identical rows for Amplitude and BigQuery validation.
+-- See docs/validation_results.md for the shared timestamp-rebasing rules.
 WITH source_events AS (
   SELECT
     user_pseudo_id,

@@ -6,7 +6,7 @@ Completed September 30, 2026. One matching funnel was measured from a shared eve
 
 Can the same four-event ordered funnel produce identical unique-user counts in SQL and Amplitude?
 
-- Source: Google's public obfuscated GA4 ecommerce sample; `sql/05_mixpanel_validation_extract.sql` deterministically selects 200 users by FARM_FINGERPRINT of source identity. Users first view an item in November 2020 UTC; all four funnel-event types in the seven days after that first view are retained. This is a bounded validation sample, not an estimate of the full population.
+- Source: Google's public obfuscated GA4 ecommerce sample; `sql/05_amplitude_validation_extract.sql` deterministically selects 200 users by FARM_FINGERPRINT of source identity. Users first view an item in November 2020 UTC; all four funnel-event types in the seven days after that first view are retained. This is a bounded validation sample, not an estimate of the full population.
 - Identity: the same `ga4_` plus SHA-256 user ID in both tools. No identity stitching or session restriction. Browser/device identifiers do not establish distinct people.
 - Events: `view_item` → `add_to_cart` → `begin_checkout` → `purchase`, in this order; intervening/repeated events are allowed. Count unique users with any qualifying entry path, not event totals.
 - Conversion window: seven elapsed 24-hour days from each qualifying view. Entries: August 1–31, 2026 UTC in the rebased copy. All available continuation events are retained.

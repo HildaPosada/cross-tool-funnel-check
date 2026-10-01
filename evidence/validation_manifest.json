@@ -1,6 +1,6 @@
 {
   "source": "bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*",
-  "extraction_sql": "sql/05_mixpanel_validation_extract.sql",
+  "extraction_sql": "sql/05_amplitude_validation_extract.sql",
   "source_csv_sha256": "72692231bcb07d24916f7fe175da3ec9882316ea99ac2ef5797a47a191d295cf",
   "event_rows": 1353,
   "users": 200,

@@ -18,11 +18,7 @@ The dashboard also shows weekly return activity. Between **2.47% and 6.73%** of 
 
 ## How I checked it
 
-I selected **200 visitor IDs and 1,353 events**, then had BigQuery and Amplitude count the same four steps: viewed a product, added to cart, started checkout, and purchased. They agreed at every step: **200 → 13 → 7 → 1**.
-
-Amplitude's plan would not chart the original 2020 events. I moved every timestamp forward by the same amount in both tools and retained the originals. This changed the dates, while preserving event order and elapsed time. The shifted copy is a methods check, not evidence of real activity in 2026.
-
-I also built and ran **three dbt models with 14 passing tests on both BigQuery and DuckDB**. An intentional boundary-test failure shows that the tests catch an incorrect expectation. The final warehouse table returns the same four counts.
+BigQuery and Amplitude counted the same 1,353-event, 200-visitor-ID extract and agreed at every step: **200 → 13 → 7 → 1**. The same calculation ran in three dbt models on BigQuery and DuckDB, with **14 passing tests on each**. Read the [case study](docs/case_study.md) for the story or the [validation results](docs/validation_results.md) for the counting rules and evidence.
 
 ## What to keep in mind
 
@@ -44,6 +40,6 @@ The dashboard uses the full sample. The independent tool comparison uses a bound
 - [BigQuery execution evidence](evidence/dbt_bigquery_summary.json): the actual warehouse run and funnel counts.
 - [Resume project wording](docs/resume_project.md): a draft with the tools actually used.
 
-Start with the [event audit](sql/01_event_audit.sql) when reproducing the source analysis. Read the [validation protocol](docs/validation_protocol.md) before comparing tools. Follow the [dbt instructions](dbt/README.md) to run the tested pipeline. Keep raw events and credentials out of Git.
+Start with the [event audit](sql/01_event_audit.sql) when reproducing the source analysis. Use the [completed validation method and results](docs/validation_results.md) when comparing tools. Follow the [dbt instructions](dbt/README.md) to run the tested pipeline. Keep raw events and credentials out of Git.
 
 Source: [Google's public GA4 ecommerce sample](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset).
