@@ -7,6 +7,8 @@
 [![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=111111)](https://duckdb.org/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
+> **[Live dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention)**
+
 ## Can Two Analytics Tools Agree on the Same Purchase Journey?
 
 I used Google's public ecommerce event sample to build a dashboard, then checked the same small event extract in BigQuery, Amplitude, and dbt.
@@ -23,7 +25,6 @@ The largest drop came between viewing a product and adding it to a cart: **80.32
 
 The dashboard also shows weekly return activity. Between **2.47% and 6.73%** of visitor IDs in groups with a fully observable following week returned that week. Any recorded event counts as activity.
 
-[Explore the Tableau dashboard](https://public.tableau.com/views/EcommerceProductAnalyticsFunnelRetention/ConversionRetention).
 
 ## How I checked it
 
